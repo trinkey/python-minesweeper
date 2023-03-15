@@ -1,27 +1,37 @@
 # scuffed online version - https://trinkey.trinket.io/sites/minesweep
 
-from random import randint
-from os import listdir
-from time import time
-from sys import setrecursionlimit
-import turtle
-
 difficulty = 1
 
-# Difficulty:
-# 0 - very easy - 10x10, 1 bomb
-# 1 - easy      - 10x10, 10 bombs
-# 2 - normal    - 16x16, 20 bombs
-# 3 - hard      - 25x25, 50 bombs
-# 4 - expert    - 40x40, 150 bombs
-# Anything else - custom, use `bombs = ` and `size = `
+# +------------------------------------------------------+
+# | Difficulty:                                          \
+# \ 0 - very easy - 10x10, 1 bomb                        |
+# | 1 - easy      - 10x10, 10 bombs                      \
+# \ 2 - normal    - 16x16, 20 bombs                      |
+# | 3 - hard      - 25x25, 50 bombs                      \
+# \ 4 - expert    - 40x40, 150 bombs                     |
+# | Anything else - custom, use `bombs = ` and `size = ` \
+# +------------------------------------------------------+
 
 bombs = 10
-size = 10
+size  = 10
 
-# This is just for personal reference, you don't need to
-# understand this comment in the slightest if you aren't
-# coding with this application.
+# =====================================================
+# Everything under this is just for personal reference,
+# you don't need to understand anything under this
+# comment in the slightest if you aren't coding with
+# this application.
+# =====================================================
+
+
+# +----------------------------------------+
+# \ TODO LIST:                             |
+# | Add clicking on full numbers to reveal \
+# \   adjacent squares                     |
+# | Add a difficulty selection screen on   \
+# \   startup so you don't have to edit    |
+# |   the file                             \
+# \ Fix recursion errors w/ flood function |
+# +----------------------------------------+
 
 # clicked (list) -
 # 0 - No modifier
@@ -39,6 +49,12 @@ size = 10
 
 # if clicked[x][y] == 1 and board[x][y] == -1: kaboom
 
+# Libraries
+from random import randint
+from os import listdir
+from time import time
+from sys import setrecursionlimit
+import turtle
 
 difficultyReference = {
     "0": [10, 1],
@@ -120,7 +136,7 @@ class Board:
         self.screen.update() # Update display needed because of `self.screen.tracer(0)`
         self.screen.mainloop()
 
-        setrecursionlimit(self.size ** 2 + 1)
+        setrecursionlimit(self.size ** 2)
 
     def reset(self, x = 0, y = 0):
         for i in self.tiles:
