@@ -182,23 +182,24 @@ class Board:
                             self.correspondingShapes[str(self.board[i[1]][i[0]])]
                         )
                         self.clicked[i[1]][i[0]] = 1
-                        if self.checkIfDie() and not written: # write text when you die or win
-                            self.revealEntireBoard()
-                            self.text.write("You lost! noooo...", False, "center", ("Arial", 24, "normal"))
-                            self.text.goto(0, self.text.ycor() - 12)
-                            self.text.write("Click to restart.", False, "center", ("Arial", 12, "normal"))
-                            self.screen.onclick(self.reset, 1)
-                            self.screen.onclick(None, 3)
-                            written = True
-                        elif self.checkIfWin() and not written:
-                            self.text.write("Yay! You win!", False, "center", ("Arial", 24, "normal"))
-                            self.text.goto(0, self.text.ycor() - 12)
-                            self.text.write("Click to restart.", False, "center", ("Arial", 12, "normal"))
-                            self.text.goto(0, self.text.ycor() + 45)
-                            self.text.write(f"Time: {time() - self.originalTime} seconds", False, "center", ("Arial", 12, "normal"))
-                            self.screen.onclick(self.reset, 1)
-                            self.screen.onclick(None, 3)
-                            written = True
+                        if i == self.checked[-1] and not written:
+                            if self.checkIfDie():
+                                self.revealEntireBoard()
+                                self.text.write("You lost! noooo...", False, "center", ("Arial", 24, "normal"))
+                                self.text.goto(0, self.text.ycor() - 12)
+                                self.text.write("Click to restart.", False, "center", ("Arial", 12, "normal"))
+                                self.screen.onclick(self.reset, 1)
+                                self.screen.onclick(None, 3)
+                                written = True
+                            elif self.checkIfWin():
+                                self.text.write("Yay! You win!", False, "center", ("Arial", 24, "normal"))
+                                self.text.goto(0, self.text.ycor() - 12)
+                                self.text.write("Click to restart.", False, "center", ("Arial", 12, "normal"))
+                                self.text.goto(0, self.text.ycor() + 45)
+                                self.text.write(f"Time: {time() - self.originalTime} seconds", False, "center", ("Arial", 12, "normal"))
+                                self.screen.onclick(self.reset, 1)
+                                self.screen.onclick(None, 3)
+                                written = True
         self.screen.update() # Update display
 
     def bye(self, x = 0, y = 0): # Kill the screen
