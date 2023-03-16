@@ -315,5 +315,5 @@ class Board:
             if [x - 1, y] not in self.checked and c(x - 1, y):
                 self.flood(x - 1, y)
 
-setrecursionlimit(self.size ** 2 + 1)
+setrecursionlimit(size ** 2 + 1)
 game = Board(bombs, size)
