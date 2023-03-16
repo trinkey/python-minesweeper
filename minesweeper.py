@@ -30,7 +30,6 @@ size  = 10
 # | Add a difficulty selection screen on   \
 # \   startup so you don't have to edit    |
 # |   the file                             \
-# \ Fix recursion errors w/ flood function |
 # +----------------------------------------+
 
 # clicked (list) -
@@ -56,6 +55,7 @@ from time import time
 from sys import setrecursionlimit
 import turtle
 
+# You can set more default difficulties here, doesn't even have to be a number
 difficultyReference = {
     "0": [10, 1],
     "1": [10, 10],
@@ -135,8 +135,6 @@ class Board:
 
         self.screen.update() # Update display needed because of `self.screen.tracer(0)`
         self.screen.mainloop()
-
-        setrecursionlimit(self.size ** 2)
 
     def reset(self, x = 0, y = 0):
         for i in self.tiles:
@@ -317,4 +315,5 @@ class Board:
             if [x - 1, y] not in self.checked and c(x - 1, y):
                 self.flood(x - 1, y)
 
+setrecursionlimit(self.size ** 2 + 1)
 game = Board(bombs, size)
