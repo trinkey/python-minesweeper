@@ -1,6 +1,6 @@
 # scuffed online version - https://trinkey.trinket.io/sites/minesweep ~ https://trinket.io/pygame/7babfe187e
 
-difficulty = 4
+difficulty = 1
 
 # +----------------------------------+
 # | Difficulty:                      \
